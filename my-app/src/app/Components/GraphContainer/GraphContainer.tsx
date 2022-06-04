@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "./GraphContainer.scss"
-import { Chart } from "react-google-charts";
+import { Chart, GoogleChartWrapperChartType } from "react-google-charts";
+import Papa from "papaparse";
+
 
 type Props = {
-    ChartType: String,
-    Width: number,
-    Height: number,
-    data: number[]
+    ChartType: GoogleChartWrapperChartType,
+    Width: string,
+    Height: string,
+    data: number[][]
 }
 
 export const data = [
@@ -23,14 +25,28 @@ export const data = [
       subtitle: "Sales, Expenses, and Profit: 2014-2017",
     },
   };
-export const GraphContainer : React.FC<Props> = ({ChartType}) =>{
+export const GraphContainer : React.FC<Props> = ({ChartType, Width, Height, data}) =>{
+  const changeFileFunction = (event: any) => {
+  
+    const myPapaParse = Papa.parse(event.target.files[0], {complete: function(results,file)
+      {
+        console.log(results)
+      }}); 
+    console.log(myPapaParse);
+  }
+  const [myFile, changeFile] : any = useState(null);
     return (
-        <div>
+      
+        <div id="GraphContainer">
+          <form>
+  <input type="file" id="myFile" name="filename" onChange={changeFileFunction} />
+  <input type="submit" />
+    </form>
         <Chart
-  chartType="ScatterChart"
-  data={[["Age", "Weight"], [4, 5.5], [8, 12]]}
-  width="100%"
-  height="200px"
+  chartType= {ChartType}
+  data={[["Age", "Weight"], data[0], data[1]]}
+  width= {Width}
+  height= {Height}
   legendToggle
 /></div>
     )
