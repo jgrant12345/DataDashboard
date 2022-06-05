@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./GraphContainer.scss"
 import { Chart, GoogleChartWrapperChartType } from "react-google-charts";
 import Papa from "papaparse";
@@ -26,15 +26,22 @@ export const data = [
     },
   };
 export const GraphContainer : React.FC<Props> = ({ChartType, Width, Height, data}) =>{
+  const [chartData, changeChartData] : any = useState([]);
+  const myFunction = (results: any) => {
+    console.log(results)
+        changeChartData(results);
+        console.log(chartData)
+  }
+  useEffect(() =>  {
+    console.log(chartData)
+  })
   const changeFileFunction = (event: any) => {
   
-    const myPapaParse = Papa.parse(event.target.files[0], {complete: function(results,file)
-      {
-        console.log(results)
-      }}); 
-    console.log(myPapaParse);
-  }
-  const [myFile, changeFile] : any = useState(null);
+    const myPapaParse = Papa.parse(event.target.files[0], {complete: results => changeChartData(results.data)
+  })}
+
+
+
     return (
       
         <div id="GraphContainer">
