@@ -3,8 +3,22 @@ $primary-color: #333;
 
 #GraphContainer {
   width: 500px;
-  height: 500px;
-  background-color: black;
+  height: 400px;
+  background-color: white;
   border-radius: 10px;
+}
 
+#myFile {
+  display: none;
+}
+
+#inputLabel{
+  position: relative;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
 }

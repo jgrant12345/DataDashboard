@@ -1,0 +1,28 @@
+#Container{
+    display: flex;
+    flex-direction: column;
+}
+
+#inputLabel{
+    width: 120px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: white;
+    
+}
+
+#inputLabel:hover{
+   background-color: rgb(132, 136, 132);
+}
+
+#DownloadAndImageContainer{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    top: 50%;
+    width: 50%;
+    padding: 10px;
+
+
+
+}
